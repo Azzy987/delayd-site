@@ -6,8 +6,10 @@ import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const mode = process.env.NEXT_PUBLIC_WAITLIST_MODE ?? "api";
-const mailerLiteEmbedUrl = process.env.NEXT_PUBLIC_MAILERLITE_EMBED_URL;
+const fallbackMailerLiteEmbedUrl =
+  "https://preview.mailerlite.io/forms/2350168/187516394385966275/share";
+const mode = process.env.NEXT_PUBLIC_WAITLIST_MODE ?? "mailerlite";
+const mailerLiteEmbedUrl = process.env.NEXT_PUBLIC_MAILERLITE_EMBED_URL ?? fallbackMailerLiteEmbedUrl;
 const mailerLiteFormAction = process.env.NEXT_PUBLIC_MAILERLITE_FORM_ACTION;
 
 export function WaitlistForm({ source = "landing" }: { source?: string }) {
@@ -139,7 +141,7 @@ export function WaitlistForm({ source = "landing" }: { source?: string }) {
         {status === "success" ? (
           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-grape" />
         ) : (
-          <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-grape/55" />
+          <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-grape/[0.55]" />
         )}
         <p aria-live="polite" className={status === "error" ? "text-red-700" : ""}>
           By joining, you agree to receive Delayd launch emails. {helperText}

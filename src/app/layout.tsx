@@ -4,7 +4,7 @@ import { Analytics } from "@/components/Analytics";
 
 const siteUrl = "https://delayd.app";
 const description =
-  "Delayd turns everyday spending into visible time delay toward the dreams you care about, so every purchase has context before it becomes a habit.";
+  "Delayd turns everyday spending into visible time delay toward the dreams you care about, so every purchase gets a sharper pause before it becomes a habit.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

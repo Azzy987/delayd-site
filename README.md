@@ -12,7 +12,7 @@ Production-ready waitlist site for `delayd.app`, built with Next.js App Router, 
   - MailerLite mode through hosted embed URL or form action URL
 - SEO metadata, Open Graph tags, favicon placeholder, robots, sitemap, and JSON-LD structured metadata.
 - Analytics placeholders for GA4 and PostHog.
-- Placeholder Privacy and Terms pages.
+- Privacy and Terms routes redirect to the legal URLs used by the iOS app.
 
 ## Local run
 
@@ -50,11 +50,16 @@ WAITLIST_API_KEY=
 
 With no `WAITLIST_API_URL`, the API route validates the email and logs the signup server-side. When your provider is ready, set `WAITLIST_API_URL` to your real endpoint. If it needs a bearer token, set `WAITLIST_API_KEY`.
 
+Current production-safe default:
+
+- If `NEXT_PUBLIC_WAITLIST_MODE` is not set, the site falls back to MailerLite embed mode using the current Delayd form URL.
+- This keeps waitlist capture active even before Vercel env vars are configured.
+
 MailerLite hosted embed mode:
 
 ```bash
 NEXT_PUBLIC_WAITLIST_MODE=mailerlite
-NEXT_PUBLIC_MAILERLITE_EMBED_URL=https://dashboard.mailerlite.com/forms/YOUR_FORM_ID/share
+NEXT_PUBLIC_MAILERLITE_EMBED_URL=https://preview.mailerlite.io/forms/YOUR_ACCOUNT_ID/YOUR_FORM_ID/share
 ```
 
 MailerLite form action mode:

@@ -19,6 +19,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 12% 8%, rgba(122, 77, 243, 0.10), transparent 24rem),
     radial-gradient(circle at 90% 16%, rgba(248, 201, 118, 0.16), transparent 20rem),
@@ -42,6 +43,17 @@ body {
     linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+.ambient-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 78% 30%, rgba(122, 77, 243, 0.18), transparent 24rem),
+    radial-gradient(circle at 55% 78%, rgba(248, 201, 118, 0.12), transparent 22rem);
+  filter: saturate(1.08);
 }
 
 @media (prefers-reduced-motion: reduce) {

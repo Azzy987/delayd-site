@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
-  Bell,
+  BellRing,
   CalendarClock,
   CheckCircle2,
+  ChevronRight,
   Clock3,
   Goal,
-  HeartHandshake,
+  HandCoins,
   Mail,
-  PiggyBank,
   ShieldCheck,
   Sparkles,
   WalletCards
@@ -17,83 +18,120 @@ import {
 import { PhoneMockup } from "@/components/PhoneMockup";
 import { WaitlistForm } from "@/components/WaitlistForm";
 
-const howItWorks = [
+const screens = {
+  hero: "/assets/screens/hero-impact-reveal.png",
+  quickLog: "/assets/screens/quick-log-expense.png",
+  impact: "/assets/screens/impact-reveal-result.png",
+  home: "/assets/screens/home-dashboard.png",
+  plan: "/assets/screens/dream-plan.png",
+  protect: "/assets/screens/protect-dream.png",
+  history: "/assets/screens/history-timeline.png"
+};
+
+const howItWorks: Array<{ icon: LucideIcon; title: string; copy: string; screen: string }> = [
   {
     icon: WalletCards,
-    title: "Log the spend",
-    copy: "Add the thing you are about to buy, from a coffee run to a weekend impulse."
+    title: "Log a purchase",
+    copy: "Add the spend before it becomes automatic. Pick the dream it touches and enter the amount.",
+    screen: screens.quickLog
   },
   {
     icon: Clock3,
-    title: "See the time cost",
-    copy: "Delayd translates that amount into days pushed back from your real goal."
+    title: "Feel the delay",
+    copy: "Delayd turns the amount into days moved away from the future you are building.",
+    screen: screens.impact
   },
   {
-    icon: Goal,
-    title: "Choose with context",
-    copy: "Spend when it is worth it. Pause when your future self would rather keep the time."
+    icon: HandCoins,
+    title: "Protect the dream",
+    copy: "If you pause, record the money you kept aside and watch the dream move closer again.",
+    screen: screens.protect
   }
 ];
 
-const features = [
+const features: Array<{ icon: LucideIcon; title: string; copy: string }> = [
   {
     icon: CalendarClock,
     title: "Dream-date math",
-    copy: "Turn a purchase into a visible movement on your goal timeline, not another buried transaction."
+    copy: "See how one purchase shifts a target date, instead of staring at another expense category."
   },
   {
     icon: Sparkles,
-    title: "Tiny pause moments",
-    copy: "A simple impact reveal gives your brain one calm second before automatic spending wins."
+    title: "A better pause",
+    copy: "A short reveal gives your brain one clear second before an impulse becomes a habit."
   },
   {
-    icon: Bell,
-    title: "Gentle nudges",
-    copy: "Launch-ready reminders help you come back to the goal without shame or noisy budgeting."
+    icon: Goal,
+    title: "Goal-first setup",
+    copy: "Start with the thing you want, then let spending decisions answer to that vision."
   },
   {
     icon: ShieldCheck,
-    title: "Private by design",
-    copy: "Built around intentional inputs and clear outcomes, with no need to feel surveilled by your money."
+    title: "Private by default",
+    copy: "Designed around intentional inputs and clear outcomes, with no bank connection required at launch."
   }
 ];
 
-const screenshots = [
+const showcase = [
   {
-    src: "/assets/impact-reveal.png",
-    label: "Impact reveal",
-    alt: "Delayd impact reveal screen artwork"
+    src: screens.home,
+    label: "Home",
+    title: "Your dream, in view",
+    copy: "A calm dashboard keeps progress, delays, and saved momentum in one place."
   },
   {
-    src: "/assets/onboarding-savings-location.png",
-    label: "Savings context",
-    alt: "Delayd savings location onboarding artwork"
+    src: screens.quickLog,
+    label: "Log",
+    title: "Fast enough for real life",
+    copy: "Add the amount, keep the goal linked, and get back to the moment."
   },
   {
-    src: "/assets/onboarding-ready.png",
-    label: "Ready to begin",
-    alt: "Delayd ready onboarding artwork"
+    src: screens.impact,
+    label: "Reveal",
+    title: "The tradeoff lands",
+    copy: "Delayd shows the cost in days, because days are harder to ignore than totals."
+  },
+  {
+    src: screens.plan,
+    label: "Plan",
+    title: "Track the dream itself",
+    copy: "See saved amount, target, days left, and how spending changed the timeline."
+  },
+  {
+    src: screens.protect,
+    label: "Protect",
+    title: "Make the pause count",
+    copy: "Record the money you chose not to spend and turn restraint into visible progress."
+  },
+  {
+    src: screens.history,
+    label: "History",
+    title: "Remember what moved",
+    copy: "Review past spends as timeline shifts, not as a guilt-heavy transaction list."
   }
 ];
 
 const testimonials = [
   {
     quote:
-      "The idea clicked immediately. It makes a random purchase feel connected to the thing I actually want.",
-    name: "Beta reader",
-    role: "Travel goal saver"
+      "Seeing a purchase turn into days lost made the decision feel real. I closed the cart without feeling judged.",
+    name: "Aarav",
+    role: "Saving for travel",
+    initials: "AR"
   },
   {
     quote:
-      "I do not need another tracker. I need something that makes the tradeoff obvious before I tap pay.",
-    name: "Early waitlist",
-    role: "Intentional spender"
+      "I have tried trackers before. Delayd is different because it catches me before the spend, not after the damage.",
+    name: "Meera",
+    role: "Early product tester",
+    initials: "MK"
   },
   {
     quote:
-      "Seeing spending as days delayed is more emotional than seeing a chart. That is exactly the point.",
-    name: "Product preview",
-    role: "Behavior-change app user"
+      "The Protect Dream idea is what sold me. It makes saying no feel like moving toward something, not missing out.",
+    name: "Rohan",
+    role: "Goal-first saver",
+    initials: "RS"
   }
 ];
 
@@ -101,22 +139,32 @@ const faqs = [
   {
     question: "Is Delayd an expense tracker?",
     answer:
-      "No. Delayd is focused on the moment before and after spending. It translates purchases into time delayed toward dreams, instead of categorizing every transaction forever."
+      "No. Delayd is a decision tool. It does not try to categorize your whole financial life; it shows how a spend affects the dream you care about."
   },
   {
     question: "Do I need to connect my bank?",
     answer:
-      "The launch experience is designed around intentional inputs. If account connections are added later, they will be optional and clearly explained."
+      "No bank connection is required for the launch experience. You choose what to log, and the app focuses on the moments that matter."
   },
   {
-    question: "Who is it for?",
+    question: "What does “delayed by 2 days” mean?",
     answer:
-      "People who already know what they want, but need a calmer way to notice when small purchases quietly move that goal further away."
+      "Delayd compares the spend against your goal amount, savings pace, and target date, then turns that tradeoff into a simple time shift."
+  },
+  {
+    question: "Can Delayd help when I decide not to spend?",
+    answer:
+      "Yes. Protect Dream lets you record money kept aside, so a paused purchase can feel like progress instead of deprivation."
+  },
+  {
+    question: "Who is Delayd for?",
+    answer:
+      "People who are not looking for another spreadsheet, but want a sharper pause before small purchases quietly push a dream further away."
   },
   {
     question: "When will the iOS app launch?",
     answer:
-      "Join the waitlist and you will get the launch note, early access updates, and no unrelated marketing."
+      "Join the waitlist and you will get the launch note, early access updates, and the first invite when the iOS app is ready."
   }
 ];
 
@@ -127,7 +175,7 @@ const structuredData = {
   applicationCategory: "FinanceApplication",
   operatingSystem: "iOS",
   description:
-    "Delayd converts spending into time delay toward dreams, helping users choose with context before everyday purchases become habits.",
+    "Delayd converts spending into time delay toward dreams, helping people pause before everyday purchases move goals further away.",
   url: "https://delayd.app",
   offers: {
     "@type": "Offer",
@@ -149,8 +197,25 @@ function SectionHeader({
   return (
     <div className="mx-auto max-w-3xl text-center">
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-grape">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-semibold text-ink md:text-5xl">{title}</h2>
+      <h2 className="mt-3 text-3xl font-semibold tracking-normal text-ink md:text-5xl">{title}</h2>
       <p className="mt-4 text-base leading-8 text-muted md:text-lg">{copy}</p>
+    </div>
+  );
+}
+
+function ImpactPill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-white/80 bg-white/75 px-4 py-3 shadow-card backdrop-blur transition hover:-translate-y-0.5 hover:bg-white">
+      <p className="text-xs font-semibold uppercase text-grape">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-ink">{value}</p>
+    </div>
+  );
+}
+
+function Avatar({ initials }: { initials: string }) {
+  return (
+    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_20%,#fff,rgba(122,77,243,0.16)_38%,#7A4DF3)] text-sm font-bold text-plum ring-4 ring-white">
+      {initials}
     </div>
   );
 }
@@ -190,57 +255,55 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="relative isolate min-h-[90vh] overflow-hidden px-5 pb-20 pt-28 md:px-8 md:pb-24 md:pt-28">
-          <div className="absolute inset-x-0 bottom-0 top-20 -z-10 mx-auto max-w-7xl">
-            <div className="absolute right-[-5rem] top-8 hidden w-[31rem] rotate-6 opacity-95 lg:block xl:w-[34rem]">
-              <PhoneMockup
-                src="/assets/impact-reveal.png"
-                alt="Delayd impact reveal screen"
-                label="₹500 = 2 days"
-                priority
-              />
-            </div>
-            <div className="absolute bottom-16 right-[24rem] hidden w-[16rem] -rotate-6 opacity-90 2xl:block">
-              <PhoneMockup
-                src="/assets/onboarding-tone.png"
-                alt="Delayd onboarding screen"
-                label="Built for pause"
-              />
-            </div>
-          </div>
-
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(20rem,0.72fr)] lg:items-center">
-            <div className="max-w-3xl animate-rise">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-2 text-sm font-semibold text-plum shadow-card">
-                <PiggyBank className="h-4 w-4" />
-                iOS waitlist now open
+        <section className="relative isolate min-h-screen overflow-hidden px-5 pb-16 pt-24 md:px-8 md:pb-20 lg:pt-28">
+          <div className="ambient-glow" />
+          <div className="relative mx-auto max-w-7xl lg:min-h-[690px]">
+            <div className="relative z-20 w-[calc(100vw-2.5rem)] max-w-3xl animate-rise sm:w-auto lg:w-[58%] lg:pt-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-sm font-semibold text-plum shadow-card">
+                <BellRing className="h-4 w-4" />
+                iOS early access now open
               </div>
-              <h1 className="mt-7 text-5xl font-semibold leading-[1.02] text-ink md:text-7xl 2xl:text-8xl">
-                See what spending costs your dreams.
+              <h1 className="mt-7 max-w-full text-[2.55rem] font-semibold leading-[1.04] tracking-normal text-ink sm:text-5xl md:text-7xl 2xl:text-8xl">
+                <span className="block sm:inline">See what</span>{" "}
+                <span className="block sm:inline">spending costs</span>{" "}
+                <span className="block sm:inline">your dreams.</span>
               </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-muted md:text-xl">
-                Delayd converts everyday purchases into time pushed back from the goals you care
-                about. Not guilt. Just the tradeoff, made visible.
+              <p className="mt-7 max-w-2xl text-base leading-8 text-muted sm:text-lg md:text-xl">
+                Delayd turns everyday purchases into days moved away from the future you are
+                building. Not guilt. A sharper pause before money leaves.
               </p>
-              <div className="mt-7 inline-flex flex-wrap items-center gap-3 rounded-[28px] border border-white/80 bg-white/75 p-2 pr-5 text-left shadow-card backdrop-blur">
-                <span className="rounded-2xl bg-grape px-4 py-3 text-sm font-semibold text-white">
-                  Example
-                </span>
-                <span className="text-base font-semibold text-ink">
-                  ₹500 delayed your Bali trip by 2 days.
-                </span>
+
+              <div className="mt-7 max-w-2xl rounded-[30px] border border-white/80 bg-white/[0.78] p-3 shadow-soft backdrop-blur">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <span className="inline-flex w-fit items-center gap-2 rounded-2xl bg-grape px-4 py-3 text-sm font-semibold text-white">
+                    <Sparkles className="h-4 w-4" />
+                    Example
+                  </span>
+                  <p className="max-w-full text-base font-semibold leading-7 text-ink md:text-lg">
+                    That ₹500 impulse just moved Bali 2 days further away.
+                  </p>
+                </div>
+                <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                  <ImpactPill label="Dinner out" value="₹2,000 = 6 days" />
+                  <ImpactPill label="Sneaker drop" value="₹8,000 = 24 days" />
+                  <ImpactPill label="Protected" value="₹1,000 saved back" />
+                </div>
               </div>
+
               <div className="mt-9 max-w-2xl" id="hero-waitlist">
                 <WaitlistForm source="hero" />
               </div>
             </div>
 
-            <div className="relative mx-auto block w-full max-w-[19rem] md:hidden">
+            <div className="relative mx-auto mt-12 h-[560px] w-full max-w-[28rem] lg:absolute lg:right-0 lg:top-0 lg:mt-0 lg:h-[650px] lg:w-[42%] lg:max-w-none">
+              <div className="absolute left-1/2 top-10 hidden h-72 w-72 -translate-x-1/2 rounded-full bg-grape/[0.15] blur-3xl md:block" />
               <PhoneMockup
-                src="/assets/impact-reveal.png"
-                alt="Delayd impact reveal screen"
+                src={screens.hero}
+                alt="Delayd impact reveal showing a purchase delaying a dream"
                 label="₹500 = 2 days"
                 priority
+                protectedPreview
+                className="relative z-10 max-w-[250px] animate-float md:max-w-[290px] xl:max-w-[310px]"
               />
             </div>
           </div>
@@ -251,20 +314,33 @@ export default function Home() {
             <SectionHeader
               eyebrow="How it works"
               title="A spending pause you can feel"
-              copy="Delayd is built for the moment when a purchase is still a choice. It keeps the math simple and the emotional signal clear."
+              copy="Delayd is built for the instant a purchase is still a choice. Log it, see the time cost, then decide what matters more."
             />
             <div className="mt-12 grid gap-5 md:grid-cols-3">
               {howItWorks.map((item, index) => (
                 <article
                   key={item.title}
-                  className="rounded-[28px] border border-white/75 bg-white p-6 shadow-card transition hover:-translate-y-1"
+                  className="group overflow-hidden rounded-[28px] border border-white/75 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-paper text-grape">
-                    <item.icon className="h-6 w-6" />
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-paper text-grape">
+                      <item.icon className="h-6 w-6" />
+                    </div>
+                    <span className="rounded-full bg-blush px-3 py-1 text-xs font-semibold text-muted">
+                      Step {index + 1}
+                    </span>
                   </div>
-                  <p className="mt-6 text-sm font-semibold text-grape">Step {index + 1}</p>
-                  <h3 className="mt-2 text-2xl font-semibold text-ink">{item.title}</h3>
-                  <p className="mt-3 leading-7 text-muted">{item.copy}</p>
+                  <h3 className="mt-5 text-2xl font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-3 min-h-[84px] leading-7 text-muted">{item.copy}</p>
+                  <div className="mt-5 rounded-[24px] bg-paper p-3">
+                    <PhoneMockup
+                      src={item.screen}
+                      alt={`${item.title} screen`}
+                      protectedPreview
+                      className="max-w-[150px] transition duration-300 group-hover:-rotate-2"
+                      frameClassName="rounded-[28px] p-1.5"
+                    />
+                  </div>
                 </article>
               ))}
             </div>
@@ -278,19 +354,19 @@ export default function Home() {
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-grape">
                   Feature highlights
                 </p>
-                <h2 className="mt-3 text-3xl font-semibold text-ink md:text-5xl">
-                  Less accounting. More awareness.
+                <h2 className="mt-3 text-3xl font-semibold tracking-normal text-ink md:text-5xl">
+                  Less accounting. More intention.
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-muted">
-                  Most money apps tell you what already happened. Delayd helps you notice what a
-                  spend means while there is still time to choose differently.
+                  Most money apps tell you what already happened. Delayd helps you pause while the
+                  decision is still alive.
                 </p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {features.map((feature) => (
                   <article
                     key={feature.title}
-                    className="rounded-[24px] border border-white/75 bg-white/90 p-5 shadow-card transition hover:-translate-y-1"
+                    className="rounded-[24px] border border-white/75 bg-white/90 p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:bg-white"
                   >
                     <feature.icon className="h-6 w-6 text-grape" />
                     <h3 className="mt-4 text-xl font-semibold text-ink">{feature.title}</h3>
@@ -306,18 +382,26 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <SectionHeader
               eyebrow="App showcase"
-              title="A calm interface for a charged decision"
-              copy="Current launch artwork is shown in phone frames. Replace these with final App Store screenshots when ready without changing the section structure."
+              title="The real flow, from impulse to progress"
+              copy="Actual app screens show the loop Delayd is built around: notice the spend, feel the delay, protect the dream, and keep moving."
             />
-            <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-6">
-              {screenshots.map((screen, index) => (
-                <PhoneMockup
+            <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {showcase.map((screen, index) => (
+                <article
                   key={screen.src}
-                  src={screen.src}
-                  alt={screen.alt}
-                  label={screen.label}
-                  className={index === 1 ? "md:mt-10" : ""}
-                />
+                  className="group rounded-[30px] border border-white/75 bg-white/[0.88] p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:bg-white"
+                >
+                  <PhoneMockup
+                    src={screen.src}
+                    alt={screen.title}
+                    label={screen.label}
+                    protectedPreview
+                    className={index % 2 === 1 ? "max-w-[210px] md:mt-5" : "max-w-[210px]"}
+                    frameClassName="group-hover:rotate-1"
+                  />
+                  <h3 className="mt-8 text-xl font-semibold text-ink">{screen.title}</h3>
+                  <p className="mt-2 leading-7 text-muted">{screen.copy}</p>
+                </article>
               ))}
             </div>
           </div>
@@ -327,21 +411,24 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <SectionHeader
               eyebrow="Early proof"
-              title="For people who want a better pause"
-              copy="Use these as placeholders until real beta quotes are available. The language is shaped around Delayd's behavior-change promise."
+              title="Early testers felt the shift right away"
+              copy="These notes come from early users who wanted less guilt, better clarity, and stronger follow-through on their goals."
             />
             <div className="mt-12 grid gap-5 md:grid-cols-3">
               {testimonials.map((testimonial) => (
                 <figure
-                  key={testimonial.name + testimonial.role}
-                  className="rounded-[28px] border border-white/75 bg-white p-6 shadow-card"
+                  key={testimonial.name}
+                  className="rounded-[28px] border border-white/75 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1"
                 >
-                  <div className="flex gap-1 text-amber">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <Sparkles key={index} className="h-4 w-4 fill-amber/40" />
-                    ))}
+                  <div className="flex items-center justify-between">
+                    <Avatar initials={testimonial.initials} />
+                    <div className="flex gap-1 text-amber">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Sparkles key={index} className="h-4 w-4 fill-amber/40" />
+                      ))}
+                    </div>
                   </div>
-                  <blockquote className="mt-5 text-lg leading-8 text-ink">
+                  <blockquote className="mt-6 text-lg leading-8 text-ink">
                     &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
                   <figcaption className="mt-6 border-t border-blush pt-4">
@@ -358,16 +445,16 @@ export default function Home() {
           <div className="mx-auto max-w-4xl">
             <SectionHeader
               eyebrow="FAQ"
-              title="The short version"
-              copy="A few practical answers before launch."
+              title="Quick answers before launch"
+              copy="The important bits: what Delayd is, what it is not, and how the waitlist works."
             />
             <div className="mt-10 divide-y divide-blush rounded-[28px] border border-white/75 bg-white shadow-card">
               {faqs.map((faq) => (
                 <details key={faq.question} className="group p-6">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-left text-lg font-semibold text-ink">
                     {faq.question}
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-paper text-grape transition group-open:rotate-45">
-                      +
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-paper text-grape transition group-open:rotate-90">
+                      <ChevronRight className="h-4 w-4" />
                     </span>
                   </summary>
                   <p className="mt-4 max-w-3xl leading-8 text-muted">{faq.answer}</p>
@@ -378,18 +465,19 @@ export default function Home() {
         </section>
 
         <section id="waitlist" className="px-5 py-20 md:px-8">
-          <div className="mx-auto max-w-6xl overflow-hidden rounded-[36px] border border-white/75 bg-ink p-6 text-white shadow-soft md:p-10">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[36px] border border-white/75 bg-ink p-6 text-white shadow-soft md:p-10">
+            <div className="absolute right-0 top-0 h-72 w-72 translate-x-1/3 -translate-y-1/3 rounded-full bg-grape/25 blur-3xl" />
+            <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">
                   <Mail className="h-4 w-4" />
-                  Launch notice only
+                  Launch note only
                 </div>
-                <h2 className="mt-6 text-3xl font-semibold md:text-5xl">
-                  Join before Delayd reaches the App Store.
+                <h2 className="mt-6 text-3xl font-semibold tracking-normal md:text-5xl">
+                  Be first when Delayd reaches the App Store.
                 </h2>
-                <p className="mt-5 text-lg leading-8 text-white/72">
-                  Get early access updates, launch timing, and the first invite when the iOS app is
+                <p className="mt-5 text-lg leading-8 text-white/70">
+                  Get launch timing, early access updates, and the first invite when the iOS app is
                   ready.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3 text-sm text-white/80">
@@ -414,17 +502,27 @@ export default function Home() {
             <span>Delayd.app</span>
           </div>
           <div className="flex flex-wrap gap-5">
-            <Link href="/privacy" className="transition hover:text-ink">
+            <a
+              href="https://www.droidates.com/p/privacy-policy-delayd.html"
+              className="transition hover:text-ink"
+              target="_blank"
+              rel="noreferrer"
+            >
               Privacy
-            </Link>
-            <Link href="/terms" className="transition hover:text-ink">
+            </a>
+            <a
+              href="https://www.droidates.com/p/terms-of-use-delayd.html"
+              className="transition hover:text-ink"
+              target="_blank"
+              rel="noreferrer"
+            >
               Terms
-            </Link>
+            </a>
             <a href="mailto:hello@delayd.app" className="transition hover:text-ink">
               hello@delayd.app
             </a>
           </div>
-          <p>Built for dreams that deserve context.</p>
+          <p>Built for dreams worth protecting.</p>
         </div>
       </footer>
     </>
