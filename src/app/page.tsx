@@ -258,7 +258,7 @@ export default function Home() {
         <section className="relative isolate min-h-screen overflow-hidden px-5 pb-16 pt-24 md:px-8 md:pb-20 lg:pt-28">
           <div className="ambient-glow" />
           <div className="relative mx-auto max-w-7xl lg:min-h-[690px]">
-            <div className="relative z-20 w-[calc(100vw-2.5rem)] max-w-3xl animate-rise sm:w-auto lg:w-[58%] lg:pt-8">
+            <div className="relative z-20 w-full min-w-0 max-w-3xl animate-rise lg:w-[58%] lg:pt-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-sm font-semibold text-plum shadow-card">
                 <BellRing className="h-4 w-4" />
                 iOS early access now open
@@ -268,18 +268,18 @@ export default function Home() {
                 <span className="block sm:inline">spending costs</span>{" "}
                 <span className="block sm:inline">your dreams.</span>
               </h1>
-              <p className="mt-7 max-w-2xl text-base leading-8 text-muted sm:text-lg md:text-xl">
+              <p className="mt-7 max-w-full text-base leading-8 text-muted sm:max-w-2xl sm:text-lg md:text-xl">
                 Delayd turns everyday purchases into days moved away from the future you are
                 building. Not guilt. A sharper pause before money leaves.
               </p>
 
-              <div className="mt-7 max-w-2xl rounded-[30px] border border-white/80 bg-white/[0.78] p-3 shadow-soft backdrop-blur">
+              <div className="mt-7 w-full max-w-full overflow-hidden rounded-[30px] border border-white/80 bg-white/[0.78] p-3 shadow-soft backdrop-blur sm:max-w-2xl">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   <span className="inline-flex w-fit items-center gap-2 rounded-2xl bg-grape px-4 py-3 text-sm font-semibold text-white">
                     <Sparkles className="h-4 w-4" />
                     Example
                   </span>
-                  <p className="max-w-full text-base font-semibold leading-7 text-ink md:text-lg">
+                  <p className="min-w-0 max-w-full text-base font-semibold leading-7 text-ink md:text-lg">
                     That ₹500 impulse just moved Bali 2 days further away.
                   </p>
                 </div>
