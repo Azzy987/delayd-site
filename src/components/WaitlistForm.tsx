@@ -6,10 +6,8 @@ import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const fallbackMailerLiteEmbedUrl =
-  "https://preview.mailerlite.io/forms/2350168/187516394385966275/share";
-const mode = process.env.NEXT_PUBLIC_WAITLIST_MODE ?? "mailerlite";
-const mailerLiteEmbedUrl = process.env.NEXT_PUBLIC_MAILERLITE_EMBED_URL ?? fallbackMailerLiteEmbedUrl;
+const mode = process.env.NEXT_PUBLIC_WAITLIST_MODE ?? "api";
+const mailerLiteEmbedUrl = process.env.NEXT_PUBLIC_MAILERLITE_EMBED_URL;
 const mailerLiteFormAction = process.env.NEXT_PUBLIC_MAILERLITE_FORM_ACTION;
 
 export function WaitlistForm({ source = "landing" }: { source?: string }) {

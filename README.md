@@ -52,8 +52,8 @@ With no `WAITLIST_API_URL`, the API route validates the email and logs the signu
 
 Current production-safe default:
 
-- If `NEXT_PUBLIC_WAITLIST_MODE` is not set, the site falls back to MailerLite embed mode using the current Delayd form URL.
-- This keeps waitlist capture active even before Vercel env vars are configured.
+- If `WAITLIST_API_URL` is not set, `/api/waitlist` forwards signups to the current Delayd MailerLite subscribe endpoint.
+- This keeps the branded native form on the page instead of showing MailerLite's generic hosted form.
 
 MailerLite hosted embed mode:
 
