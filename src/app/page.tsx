@@ -258,7 +258,7 @@ export default function Home() {
         <section className="relative isolate min-h-screen overflow-hidden px-5 pb-16 pt-24 md:px-8 md:pb-20 lg:pt-28">
           <div className="ambient-glow" />
           <div className="relative mx-auto max-w-7xl lg:min-h-[690px]">
-            <div className="relative z-20 w-full min-w-0 max-w-3xl animate-rise lg:w-[58%] lg:pt-8">
+            <div className="relative z-20 w-full min-w-0 max-w-[22rem] animate-rise sm:max-w-3xl lg:w-[58%] lg:pt-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/75 px-4 py-2 text-sm font-semibold text-plum shadow-card">
                 <BellRing className="h-4 w-4" />
                 iOS early access now open
