@@ -16,6 +16,7 @@ import {
   WalletCards
 } from "lucide-react";
 import { PhoneMockup } from "@/components/PhoneMockup";
+import { ShaderBackdrop } from "@/components/ShaderBackdrop";
 import { WaitlistForm } from "@/components/WaitlistForm";
 
 const screens = {
@@ -227,6 +228,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <ShaderBackdrop />
       <div className="noise" />
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/50 bg-paper/80 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">

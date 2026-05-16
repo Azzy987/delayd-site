@@ -20,6 +20,7 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+  isolation: isolate;
   background:
     radial-gradient(circle at 12% 8%, rgba(122, 77, 243, 0.10), transparent 24rem),
     radial-gradient(circle at 90% 16%, rgba(248, 201, 118, 0.16), transparent 20rem),
@@ -29,14 +30,72 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
 ::selection {
   background: rgba(122, 77, 243, 0.18);
+}
+
+.shader-backdrop {
+  --shader-x: 72%;
+  --shader-y: 18%;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  contain: strict;
+  overflow: hidden;
+}
+
+.shader-backdrop::before,
+.shader-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+}
+
+.shader-backdrop::before {
+  background:
+    conic-gradient(
+      from 210deg at var(--shader-x) var(--shader-y),
+      rgba(122, 77, 243, 0.18),
+      rgba(255, 253, 252, 0.2) 18%,
+      rgba(248, 201, 118, 0.12) 34%,
+      rgba(216, 242, 227, 0.1) 48%,
+      rgba(122, 77, 243, 0.11) 63%,
+      rgba(255, 253, 252, 0.04) 78%,
+      rgba(122, 77, 243, 0.18)
+    ),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.42), transparent 42%);
+  filter: blur(46px) saturate(1.08);
+  opacity: 0.72;
+  animation: shader-flow 18s ease-in-out infinite alternate;
+}
+
+.shader-backdrop::after {
+  background:
+    linear-gradient(
+      112deg,
+      transparent 18%,
+      rgba(255, 255, 255, 0.34) 34%,
+      rgba(122, 77, 243, 0.1) 44%,
+      transparent 60%
+    );
+  mask-image: linear-gradient(90deg, transparent, black 28%, black 68%, transparent);
+  opacity: 0.24;
+  animation: shader-sweep 13s ease-in-out infinite;
 }
 
 .noise {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   opacity: 0.35;
   background-image: linear-gradient(rgba(255, 255, 255, 0.38) 1px, transparent 1px),
@@ -56,6 +115,47 @@ body {
   filter: saturate(1.08);
 }
 
+@keyframes shader-flow {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.02);
+    opacity: 0.62;
+  }
+
+  50% {
+    transform: translate3d(1.2%, 0.8%, 0) scale(1.04);
+    opacity: 0.76;
+  }
+
+  100% {
+    transform: translate3d(-0.4%, 1.4%, 0) scale(1.03);
+    opacity: 0.68;
+  }
+}
+
+@keyframes shader-sweep {
+  0%,
+  100% {
+    transform: translate3d(-7%, 0, 0) scale(1.02);
+    opacity: 0.16;
+  }
+
+  48% {
+    transform: translate3d(7%, -1%, 0) scale(1.03);
+    opacity: 0.28;
+  }
+}
+
+@media (max-width: 640px) {
+  .shader-backdrop::before {
+    filter: blur(38px) saturate(1.04);
+    opacity: 0.52;
+  }
+
+  .shader-backdrop::after {
+    opacity: 0.14;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -64,5 +164,10 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .shader-backdrop::before,
+  .shader-backdrop::after {
+    animation: none !important;
   }
 }
