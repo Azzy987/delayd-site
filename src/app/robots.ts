@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/"
     },
-    sitemap: "https://delayd.app/sitemap.xml"
+    sitemap: "https://www.delayd.app/sitemap.xml"
   };
 }

@@ -1,8 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 
-const siteUrl = "https://delayd.app";
+const geist = localFont({
+  src: "./fonts/geist-latin.woff2",
+  display: "swap",
+  variable: "--font-site"
+});
+
+const siteUrl = "https://www.delayd.app";
 const description =
   "Delayd turns everyday spending into visible time delay toward the dreams you care about, so every purchase gets a sharper pause before it becomes a habit.";
 
@@ -32,10 +39,10 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/assets/app-icon.png",
-        width: 1024,
-        height: 1024,
-        alt: "Delayd app icon"
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Delayd shows how spending changes the date of your dreams"
       }
     ]
   },
@@ -43,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Delayd - See what spending costs your dreams",
     description,
-    images: ["/assets/app-icon.png"]
+    images: ["/opengraph-image"]
   },
   icons: {
     icon: "/favicon.svg",
@@ -55,16 +62,24 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FBF7F0",
-  colorScheme: "light",
+  themeColor: "#0A0A14",
+  colorScheme: "dark light",
   width: "device-width",
   initialScale: 1
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Anti-flash: apply dark class before first paint only if explicitly saved as dark */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})()`,
+          }}
+        />
+      </head>
+      <body className={geist.variable}>
         <Analytics />
         {children}
       </body>

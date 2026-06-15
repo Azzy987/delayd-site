@@ -1,18 +1,19 @@
 # Delayd landing page
 
-Production-ready waitlist site for `delayd.app`, built with Next.js App Router, TypeScript, and Tailwind CSS.
+Production-ready waitlist site for `www.delayd.app`, built with Next.js App Router, TypeScript, and Tailwind CSS.
 
 ## What is included
 
 - Hero with Delayd's core behavior-change message.
-- How it works, feature highlights, app showcase, testimonial placeholders, FAQ, final CTA, and footer.
-- Responsive waitlist form with optional first name, required email, consent copy, loading, success, and error states.
+- How it works, feature highlights, app showcase, founder rationale, FAQ, final CTA, and footer.
+- Responsive waitlist form with optional first name and savings goal, required email, consent copy, loading, success, and error states.
 - Two waitlist integration modes:
   - API mode through `src/app/api/waitlist/route.ts`
   - MailerLite mode through hosted embed URL or form action URL
-- SEO metadata, Open Graph tags, favicon placeholder, robots, sitemap, and JSON-LD structured metadata.
+- Canonical SEO metadata, generated 1200×630 Open Graph image, favicon, robots, sitemap, and JSON-LD structured metadata.
 - Analytics placeholders for GA4 and PostHog.
-- Privacy and Terms routes redirect to the legal URLs used by the iOS app.
+- Privacy and Terms are hosted directly on `www.delayd.app` and name Apple, RevenueCat, MailerLite, Vercel, and optional analytics providers.
+- Scroll-reveal animation, dark mode, reduced-motion support, attribution capture, honeypot, duplicate suppression, and basic rate limiting.
 
 ## Local run
 
@@ -50,10 +51,23 @@ WAITLIST_API_KEY=
 
 With no `WAITLIST_API_URL`, the API route validates the email and logs the signup server-side. When your provider is ready, set `WAITLIST_API_URL` to your real endpoint. If it needs a bearer token, set `WAITLIST_API_KEY`.
 
-Current production-safe default:
+Current production default:
 
 - If `WAITLIST_API_URL` is not set, `/api/waitlist` forwards signups to the current Delayd MailerLite subscribe endpoint.
 - This keeps the branded native form on the page instead of showing MailerLite's generic hosted form.
+- The route captures UTM parameters, referrer, landing path, form location, and the optional savings-goal answer.
+- In MailerLite, create custom fields named `saving_for`, `source`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `referrer`, and `landing_path` if you want those values retained by the hosted-form endpoint.
+
+Confirmed on June 15, 2026: a signup submitted through `www.delayd.app/api/waitlist` appeared in MailerLite Subscribers.
+
+Recommended MailerLite automation:
+
+1. Immediately: waitlist confirmation plus one product screenshot.
+2. Day 2: founder story and the problem Delayd solves.
+3. Day 4: short product demo.
+4. Invitation: TestFlight link and three precise tasks.
+5. Two days later: one-question feedback email.
+6. Launch day: App Store link and a request to share Delayd.
 
 MailerLite hosted embed mode:
 
@@ -122,13 +136,13 @@ In Namecheap:
 
 | Type | Host | Value | TTL |
 | --- | --- | --- | --- |
-| A | `@` | `76.76.21.21` | Automatic |
-| CNAME | `www` | `cname.vercel-dns.com` | Automatic |
+| A | `@` | `216.198.79.1` | Automatic |
+| CNAME | `www` | `a6ff684bcd21fe4e.vercel-dns-017.com` | Automatic |
 
 5. In Vercel, keep both domains attached:
    - `delayd.app`
    - `www.delayd.app`
-6. Set the preferred production domain in Vercel, usually `delayd.app`.
+6. Set `www.delayd.app` as the preferred production domain. Keep `delayd.app` redirecting to it.
 7. Wait for DNS propagation. It can be fast, but allow up to 24 hours.
 
 ## Major files
