@@ -102,13 +102,17 @@ Copied from `/Users/Azam/iOS Projects/Delayd/Delayd/Assets.xcassets` into `publi
 - `onboarding-savings-location.png`
 - `onboarding-ready.png`
 
-The app showcase currently uses onboarding/launch artwork inside phone frames because no dedicated screenshot folder was found. When final screenshots are available, replace these files or update `screenshots` in `src/app/page.tsx`:
+The app showcase uses final rendered iPhone mockups in `public/assets/mockups`:
 
-- `public/assets/screenshot-impact.png`
-- `public/assets/screenshot-goal.png`
-- `public/assets/screenshot-ready.png`
+- `hero-impact-reveal-portrait.png`
+- `home-dashboard-portrait.png`
+- `quick-log-expense-portrait.png`
+- `impact-reveal-result-portrait.png`
+- `protect-dream-portrait.png`
+- `history-timeline-portrait.png`
+- `dream-plan-portrait.png`
 
-Recommended screenshot size: iPhone portrait, at least 1170 x 2532.
+Recommended replacement size: iPhone portrait mockup, `1419 x 2796` or the same aspect ratio.
 
 ## Deploy to Vercel
 

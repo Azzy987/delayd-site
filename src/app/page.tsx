@@ -29,13 +29,13 @@ import { Accordion } from "@/components/Accordion";
 /* ─── Data ─── */
 
 const screens = {
-  hero: "/assets/screens/hero-impact-reveal.png",
-  quickLog: "/assets/screens/quick-log-expense.png",
-  impact: "/assets/screens/impact-reveal-result.png",
-  home: "/assets/screens/home-dashboard.png",
-  plan: "/assets/screens/dream-plan.png",
-  protect: "/assets/screens/protect-dream.png",
-  history: "/assets/screens/history-timeline.png"
+  hero: "/assets/mockups/hero-impact-reveal-portrait.png",
+  quickLog: "/assets/mockups/quick-log-expense-portrait.png",
+  impact: "/assets/mockups/impact-reveal-result-portrait.png",
+  home: "/assets/mockups/home-dashboard-portrait.png",
+  plan: "/assets/mockups/dream-plan-portrait.png",
+  protect: "/assets/mockups/protect-dream-portrait.png",
+  history: "/assets/mockups/history-timeline-portrait.png"
 };
 
 const howItWorks: Array<{ icon: LucideIcon; title: string; copy: string; screen: string }> = [
