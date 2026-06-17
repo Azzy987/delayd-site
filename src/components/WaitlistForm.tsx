@@ -119,7 +119,7 @@ export function WaitlistForm({ source = "landing" }: { source?: string }) {
           onChange={(event) => setWebsite(event.target.value)}
         />
       </div>
-      <div className="grid gap-3 md:grid-cols-[0.75fr_1fr_auto]">
+      <div className="grid gap-3 xl:grid-cols-[0.8fr_1fr_8.75rem]">
         <label className="sr-only" htmlFor={`firstName-${source}`}>
           First name
         </label>
@@ -151,7 +151,7 @@ export function WaitlistForm({ source = "landing" }: { source?: string }) {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="btn-glow group inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-grape to-blue-500 px-6 text-sm font-semibold text-white shadow-glow-btn transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-grape/20 disabled:cursor-not-allowed disabled:opacity-70"
+          className="btn-glow group inline-flex h-14 w-full min-w-[8.75rem] items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-gradient-to-r from-grape to-blue-500 px-6 text-sm font-semibold text-white shadow-glow-btn transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-grape/20 disabled:cursor-not-allowed disabled:opacity-70"
           aria-label="Join the Delayd waitlist"
         >
           {status === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}

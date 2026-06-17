@@ -40,7 +40,7 @@ export function StickySteps({ steps }: { steps: Step[] }) {
   return (
     <div className="grid gap-10 lg:grid-cols-2 lg:gap-20">
       {/* Steps column */}
-      <div className="space-y-16 lg:space-y-40">
+      <div className="space-y-16 lg:space-y-40 lg:pb-[32vh]">
         {steps.map((step, i) => (
           <div
             key={step.title}
@@ -81,8 +81,8 @@ export function StickySteps({ steps }: { steps: Step[] }) {
 
       {/* Desktop: sticky phone with crossfade */}
       <div className="hidden lg:block">
-        <div className="sticky top-16 flex h-[calc(100vh-4rem)] items-center justify-center">
-          <div className="relative w-full max-w-[280px]">
+        <div className="sticky top-24 flex h-[calc(100vh-7rem)] items-center justify-center">
+          <div className="relative w-full max-w-[min(250px,calc((100vh-9rem)*0.44))]">
             {steps.map((step, i) => (
               <div
                 key={step.screen}
@@ -97,7 +97,7 @@ export function StickySteps({ steps }: { steps: Step[] }) {
                 <PhoneMockup
                   src={step.screen}
                   alt={`${step.title} screen`}
-                  className="max-w-[280px]"
+                  className="max-w-full"
                 />
               </div>
             ))}
